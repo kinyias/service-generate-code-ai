@@ -1,12 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const genAiCode = require('./configs/AiMode'); // Adjust the path as necessary
-
+const dotenv = require('dotenv');
+const cors = require('cors');
+dotenv.config();
 const app = express();
 const port = 3000;
-
+app.use(
+  cors({
+    origin: process.env.APP_ORIGIN,
+    credentials: true,
+  })
+);
 app.use(bodyParser.json());
-
+app.use(express.urlencoded({ extended: true }));
 app.post('/api/gen-ai-code', async (req, res) => {
   const { prompt } = req.body;
   try {
