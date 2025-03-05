@@ -26,6 +26,11 @@ app.post('/api/gen-ai-code', async (req, res) => {
   }
 });
 
+// Express Routes
+app.get('/', (req, res) => {
+  res.send('Service is running.');
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
 });
